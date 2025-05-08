@@ -11,8 +11,8 @@
 	<groupId>br.com</groupId>
 	<artifactId>teste-sistema-bancario</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>registration-login-demo</name>
-	<description>Demo project for Spring Boot</description>
+	<name>Teste de Sistema Bancário</name>
+	<description>Teste de qualificação</description>
 	<properties>
 		<java.version>17</java.version>
 	</properties>

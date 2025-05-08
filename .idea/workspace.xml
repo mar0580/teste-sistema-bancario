@@ -4,21 +4,45 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d9767f1d-d7d5-41e7-a6c2-6af9bc64d195" name="Changes" comment="Primeiro commit" />
+    <list default="true" id="d9767f1d-d7d5-41e7-a6c2-6af9bc64d195" name="Changes" comment="Renomeado projeto">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/br/com/banco/RegistrationLoginDemoApplication.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/maven-archiver/pom.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/createdFiles.lst" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/inputFiles.lst" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/registration-login-demo-0.0.1-SNAPSHOT.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/registration-login-demo-0.0.1-SNAPSHOT.jar.original" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/surefire-reports/TEST-com.example.registrationlogindemo.RegistrationLoginDemoApplicationTests.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/surefire-reports/com.example.registrationlogindemo.RegistrationLoginDemoApplicationTests.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/br/com/banco/RegistrationLoginDemoApplicationTests.class" beforeDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="master" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/mar0580/teste-sistema-bancario",
-    "accountId": "716e7873-1baf-4fd7-a1b1-99ef4c97746f"
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;mar0580&quot;
   }
-}]]></component>
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/mar0580/teste-sistema-bancario&quot;,
+    &quot;accountId&quot;: &quot;716e7873-1baf-4fd7-a1b1-99ef4c97746f&quot;
+  }
+}</component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 0
 }</component>
@@ -40,9 +64,11 @@
     "RequestMappingsPanelWidth0": "75",
     "RequestMappingsPanelWidth1": "75",
     "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
     "SONARLINT_PRECOMMIT_ANALYSIS": "true",
     "Spring Boot.RegistrationLoginDemoApplication.executor": "Run",
-    "git-widget-placeholder": "master",
+    "Spring Boot.SistemaBancarioApplication.executor": "Run",
+    "git-widget-placeholder": "feature-primeira-implementacao",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "C:/Users/mar05/OneDrive/Desktop/teste-sistema-bancario",
     "node.js.detected.package.eslint": "true",
@@ -74,9 +100,9 @@
       <option name="filePath" />
       <method v="2" />
     </configuration>
-    <configuration name="RegistrationLoginDemoApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+    <configuration name="SistemaBancarioApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
       <module name="teste-sistema-bancario" />
-      <option name="SPRING_BOOT_MAIN_CLASS" value="br.com.banco.RegistrationLoginDemoApplication" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="br.com.banco.SistemaBancarioApplication" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -102,7 +128,9 @@
       <workItem from="1746648241532" duration="9088000" />
       <workItem from="1746662456090" duration="118000" />
       <workItem from="1746662641919" duration="273000" />
-      <workItem from="1746663171076" duration="723000" />
+      <workItem from="1746663171076" duration="1086000" />
+      <workItem from="1746664283927" duration="1801000" />
+      <workItem from="1746669472837" duration="316000" />
     </task>
     <task id="LOCAL-00001" summary="Primeiro commit">
       <option name="closed" value="true" />
@@ -112,7 +140,23 @@
       <option name="project" value="LOCAL" />
       <updated>1746663625400</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Alteração README.md">
+      <option name="closed" value="true" />
+      <created>1746664073673</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1746664073673</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Renomeado projeto">
+      <option name="closed" value="true" />
+      <created>1746669772503</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1746669772503</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -120,6 +164,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Primeiro commit" />
-    <option name="LAST_COMMIT_MESSAGE" value="Primeiro commit" />
+    <MESSAGE value="Alteração README.md" />
+    <MESSAGE value="Renomeado projeto" />
+    <option name="LAST_COMMIT_MESSAGE" value="Renomeado projeto" />
   </component>
 </project>

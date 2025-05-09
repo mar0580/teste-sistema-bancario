@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Minha Conta</title>
+</head>
+<body>
+<h1>Conta: <span th:text="${numeroConta}"></span></h1>
+<h2>Saldo: R$ <span th:text="${saldo}"></span></h2>
+
+<h3>Creditar</h3>
+<form th:action="@{/conta/{numero}/creditar(numero=${numeroConta})}" method="post">
+    <input type="number" name="valor" step="0.01" min="0.01" required>
+    <button type="submit">Creditar</button>
+</form>
+
+<h3>Debitar</h3>
+<form th:action="@{/conta/{numero}/debitar(numero=${numeroConta})}" method="post">
+    <input type="number" name="valor" step="0.01" min="0.01" required>
+    <button type="submit">Debitar</button>
+</form>
+
+<h3>Transferir</h3>
+<form th:action="@{/conta/{numero}/transferir(numero=${numeroConta})}" method="post">
+    <input type="text" name="numeroDestino" placeholder="Número da conta destino" required>
+    <input type="number" name="valor" step="0.01" min="0.01" required>
+    <button type="submit">Transferir</button>
+</form>
+</body>
+</html>

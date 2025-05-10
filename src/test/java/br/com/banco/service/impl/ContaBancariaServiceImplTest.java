@@ -263,29 +263,7 @@ class ContaBancariaServiceImplTest {
         verify(contaBancariaRepository, times(1)).save(conta);
         verify(transacaoRepository, never()).save(any(Transacao.class));
     }
-/*
-    @DisplayName("Deve retornar a role existente ou criar uma nova se não existir")
-    @Test
-    void testObterRoleUsuario() {
-        // Arrange
-        Role roleExistente = new Role(1L, "ROLE_USER", Collections.emptyList());
-        when(roleRepository.findByTipoUsuario("ROLE_USER")).thenReturn(null, roleExistente);
-        when(roleRepository.save(any(Role.class))).thenReturn(roleExistente);
 
-        // Act
-        Role roleCriada = usuarioService.obterRoleUsuario();
-        Role roleExistenteRetornada = usuarioService.obterRoleUsuario();
-
-        // Assert
-        assertNotNull(roleCriada);
-        assertEquals("ROLE_USER", roleCriada.getTipoUsuario());
-        verify(roleRepository, times(1)).save(any(Role.class));
-
-        assertNotNull(roleExistenteRetornada);
-        assertEquals("ROLE_USER", roleExistenteRetornada.getTipoUsuario());
-        verify(roleRepository, times(1)).findByTipoUsuario("ROLE_USER");
-    }
-*/
     @DisplayName("Deve listar todas as contas bancárias")
     @Test
     void testListarContas() {
@@ -330,27 +308,4 @@ class ContaBancariaServiceImplTest {
         verify(contaBancariaRepository, never()).save(destino);
         verify(transacaoRepository, never()).save(any(Transacao.class));
     }
-/*
-    @DisplayName("Deve retornar o usuário pelo e-mail ou lançar exceção se não encontrado")
-    @Test
-    void testBuscarUsuarioPorEmail() {
-        // Arrange
-        String email = "joao@email.com";
-        Usuario usuario = new Usuario(1L, "João", email, "senha123", LocalDateTime.now(), Collections.emptyList());
-        when(usuarioRepository.findByEmail(email)).thenReturn(usuario);
-
-        // Act & Assert
-        Usuario usuarioEncontrado = usuarioService.buscarUsuarioPorEmail(email);
-        assertNotNull(usuarioEncontrado);
-        assertEquals(email, usuarioEncontrado.getEmail());
-        verify(usuarioRepository, times(1)).findByEmail(email);
-
-        // Teste para exceção
-        when(usuarioRepository.findByEmail("naoexiste@email.com")).thenReturn(null);
-        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
-            usuarioService.buscarUsuarioPorEmail("naoexiste@email.com");
-        });
-        assertEquals("Usuário não encontrado.", exception.getMessage());
-        verify(usuarioRepository, times(1)).findByEmail("naoexiste@email.com");
-    }*/
 }

@@ -47,6 +47,7 @@
                                    name="username"
                                    class="form-control"
                                    placeholder="Email"
+                                   required
                             />
                         </div>
 
@@ -57,14 +58,13 @@
                                    name="password"
                                    class="form-control"
                                    placeholder="Senha"
+                                   required
                             />
                         </div>
 
                         <div class="mb-3">
                             <button type="submit" class="btn btn-primary">Login</button>
-                            <span> Novo usuário
-                            <a th:href="@{/register}"> clique aqui </a>
-                        </span>
+                            <a th:href="@{/admin/criar-usuario}"> Novo usuário </a>
                         </div>
                     </form>
                 </div>

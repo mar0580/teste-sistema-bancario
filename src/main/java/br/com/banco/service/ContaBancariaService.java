@@ -9,8 +9,6 @@ public interface ContaBancariaService {
     void criarConta(String titular, String numero, String email, String senha);
     void creditar(String numeroConta, BigDecimal valor);
     void debitar(String numeroConta, BigDecimal valor);
-    void transferir(String contaOrigem, String contaDestino, BigDecimal valor);
-    BigDecimal consultarSaldo(String numeroConta);
     List<ContaBancaria> listarContas();
     boolean verificarContaUsuario(String email, String numeroConta);
     ContaBancaria consultarEmail(String email);

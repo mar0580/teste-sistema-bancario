@@ -16,7 +16,8 @@ public interface ContaBancariaRepository extends JpaRepository<ContaBancaria, Lo
     @Query("SELECT c FROM ContaBancaria c WHERE c.titular = :titular")
     Optional<ContaBancaria> findByTitular(@Param("titular") String titular);
 
-    @Lock(LockModeType.PESSIMISTIC_WRITE)
-    @Query("SELECT c FROM ContaBancaria c WHERE c.numeroConta = :numeroConta")
-    Optional<ContaBancaria> findByNumeroContaWithLock(@Param("numeroConta") String numeroConta);
+//    @Lock(LockModeType.PESSIMISTIC_WRITE)
+//    @Query("SELECT c FROM ContaBancaria c WHERE c.numeroConta = :numeroConta")
+//    Optional<ContaBancaria> findByNumeroContaWithLock(@Param("numeroConta") String numeroConta);
+
 }

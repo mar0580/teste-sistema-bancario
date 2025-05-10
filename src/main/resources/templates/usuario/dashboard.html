@@ -24,6 +24,15 @@
 </nav>
 <div class="container">
     <h2 class="text-center">Operações Bancárias</h2>
+    <!-- Exibir mensagem de erro -->
+    <div th:if="${error}" class="alert alert-danger" role="alert">
+        <span th:text="${error}"></span>
+    </div>
+
+    <!-- Exibir mensagem de sucesso -->
+    <div th:if="${success}" class="alert alert-success" role="alert">
+        <span th:text="${success}"></span>
+    </div>
     <div class="card mb-4">
         <div class="card-body">
             <h5 class="card-title">Informações da Conta</h5>
@@ -32,22 +41,15 @@
             <p class="card-text"><strong>Número da Conta:</strong> <span th:text="${numeroConta}"></span></p>
         </div>
     </div>
-    <form method="post" th:action="@{/usuario/creditar}" class="mb-4">
+    <form method="post" th:action="@{/usuario/operacao}" class="mb-4">
         <input type="hidden" name="numeroConta" th:value="${numeroConta}" />
+        <input type="hidden" id="tipoOperacao" name="tipoOperacao" />
         <div class="form-group">
-            <label for="valorCredito">Valor</label>
-            <input type="number" class="form-control" id="valorCredito" name="valor" placeholder="Informe o valor" step="0.01" required>
+            <label for="valorOperacao">Valor</label>
+            <input type="number" class="form-control" id="valorOperacao" name="valor" placeholder="Informe o valor" step="0.01" required>
         </div>
-        <button type="submit" class="btn btn-success">Creditar</button>
-    </form>
-
-    <form method="post" th:action="@{/usuario/debitar}">
-        <input type="hidden" name="numeroConta" th:value="${numeroConta}" />
-        <div class="form-group">
-            <label for="valorDebito">Valor</label>
-            <input type="number" class="form-control" id="valorDebito" name="valor" placeholder="Informe o valor" step="0.01" required>
-        </div>
-        <button type="submit" class="btn btn-danger">Debitar</button>
+        <button type="submit" class="btn btn-success" onclick="document.getElementById('tipoOperacao').value='CREDITO'">Creditar</button>
+        <button type="submit" class="btn btn-danger" onclick="document.getElementById('tipoOperacao').value='DEBITO'">Debitar</button>
     </form>
 </div>
 </body>

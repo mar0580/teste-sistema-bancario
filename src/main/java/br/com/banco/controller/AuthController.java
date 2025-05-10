@@ -12,6 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.math.BigDecimal;
 
@@ -44,26 +45,6 @@ public class AuthController {
         return "register_";
     }
 
-    @PostMapping("/usuario/creditar")
-    public String creditar(@RequestParam String numeroConta, @RequestParam BigDecimal valor, Authentication authentication) {
-        String emailUsuarioLogado = authentication.getName();
-        if (!contaBancariaService.verificarContaUsuario(emailUsuarioLogado, numeroConta)) {
-            throw new SecurityException("Operação não permitida para esta conta.");
-        }
-        contaBancariaService.creditar(numeroConta, valor);
-        return "redirect:/usuario/dashboard";
-    }
-
-    @PostMapping("/usuario/debitar")
-    public String debitar(@RequestParam String numeroConta, @RequestParam BigDecimal valor, Authentication authentication) {
-        String emailUsuarioLogado = authentication.getName();
-        if (!contaBancariaService.verificarContaUsuario(emailUsuarioLogado, numeroConta)) {
-            throw new SecurityException("Operação não permitida para esta conta.");
-        }
-        contaBancariaService.debitar(numeroConta, valor);
-        return "redirect:/usuario/dashboard";
-    }
-
     @GetMapping("/usuario/dashboard")
     public String dashboardUsuario(Authentication authentication, Model model) {
         String emailUsuarioLogado = authentication.getName();
@@ -73,5 +54,31 @@ public class AuthController {
         model.addAttribute("email", usuario.getEmail());
         model.addAttribute("numeroConta", conta.getNumeroConta());
         return "usuario/dashboard";
+    }
+
+    @PostMapping("/usuario/operacao")
+    public String realizarOperacao(@RequestParam String numeroConta, @RequestParam BigDecimal valor, @RequestParam String tipoOperacao,
+                                   Authentication authentication, RedirectAttributes redirectAttributes, Model model) {
+        String emailUsuarioLogado = authentication.getName();
+        try {
+            if (!contaBancariaService.verificarContaUsuario(emailUsuarioLogado, numeroConta)) {
+                throw new SecurityException("Operação não permitida para esta conta.");
+            }
+            if ("CREDITO".equals(tipoOperacao)) {
+                contaBancariaService.creditar(numeroConta, valor);
+                redirectAttributes.addFlashAttribute("success", "Crédito realizado com sucesso");
+            } else if ("DEBITO".equals(tipoOperacao)) {
+                contaBancariaService.debitar(numeroConta, valor);
+                redirectAttributes.addFlashAttribute("success", "Débito realizado com sucesso");
+            }
+            return "redirect:/usuario/dashboard";
+        } catch (IllegalArgumentException | SecurityException e) {
+            model.addAttribute("error", e.getMessage());
+            ContaBancaria conta = contaBancariaService.consultarEmail(emailUsuarioLogado);
+            model.addAttribute("titular", conta.getTitular());
+            model.addAttribute("email", emailUsuarioLogado);
+            model.addAttribute("numeroConta", numeroConta);
+            return "usuario/dashboard";
+        }
     }
 }

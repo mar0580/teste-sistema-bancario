@@ -22,13 +22,13 @@ public class AdminController {
     @GetMapping("/criar-conta")
     public String mostrarFormularioCriacao(Model model) {
         model.addAttribute("conta", new ContaBancaria());
-        model.addAttribute("contaBancaria", new ContaBancaria()); // Adiciona o objeto ao modelo
-        return "admin/criar-conta";
+        model.addAttribute("contaBancaria", new ContaBancaria());
+        return "/admin/criar-conta";
     }
 
     @PostMapping("/criar-conta")
-    public String criarConta(@ModelAttribute ContaBancaria conta) {
-        contaBancariaService.criarConta(conta.getTitular(), conta.getNumeroConta(), conta.getTipoConta());
+    public String criarConta(@ModelAttribute ContaBancaria conta, @RequestParam String email, @RequestParam String senha) {
+        contaBancariaService.criarConta(conta.getTitular(), conta.getNumeroConta(), email, senha);
         return "admin/criar-conta";
     }
 
@@ -39,7 +39,7 @@ public class AdminController {
         contas.forEach(conta -> conta.setDataCriacaoFormatada(
                 conta.getDataCriacao().format(DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm"))
         ));
-        model.addAttribute("contaBancaria", new ContaBancaria()); // Adiciona o objeto ao modelo
+        model.addAttribute("contaBancaria", new ContaBancaria());
         return "admin/listar-contas";
     }
 }

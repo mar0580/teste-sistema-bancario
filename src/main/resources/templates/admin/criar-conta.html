@@ -9,17 +9,24 @@
           integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 </head>
 <body>
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" th:fragment="header">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container-fluid">
-        <a class="navbar-brand" th:href="@{/}">Sistema Bancário</a>
+        <a class="navbar-brand" href="#">Sistema Bancário</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" th:href="@{/register}">Registrar</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" th:href="@{/logout}">Sair</a>
+                </li>
+            </ul>
+        </div>
     </div>
 </nav>
-<br />
-<br />
-<br />
 <div class="container">
     <div class="row col-md-8 offset-md-2">
         <div class="card">
@@ -40,6 +47,7 @@
                                placeholder="Informe o titular"
                                th:field="*{titular}"
                                type="text"
+                               required
                         />
                         <p th:errors="*{titular}" class="text-danger"
                            th:if="${#fields.hasErrors('titular')}">
@@ -50,25 +58,13 @@
                         <input class="form-control"
                                id="numeroConta"
                                name="numeroConta"
-                               placeholder="Informe o número da conta"
+                               placeholder="Informe o número da conta do titular"
                                th:field="*{numeroConta}"
                                type="text"
+                               required
                         />
                         <p th:errors="*{numeroConta}" class="text-danger"
                            th:if="${#fields.hasErrors('numeroConta')}">
-                        </p>
-                    </div>
-                    <div class="form-group mb-3">
-                        <label class="form-label">Tipo da Conta</label>
-                        <input class="form-control"
-                               id="tipoConta"
-                               name="tipoConta"
-                               placeholder="Informe o tipo da conta"
-                               th:field="*{tipoConta}"
-                               type="text"
-                        />
-                        <p th:errors="*{tipoConta}" class="text-danger"
-                           th:if="${#fields.hasErrors('tipoConta')}">
                         </p>
                     </div>
                     <div class="form-group mb-3">
@@ -80,6 +76,7 @@
                                th:field="*{saldo}"
                                type="number"
                                step="0.01"
+                               disabled
                         />
                         <p th:errors="*{saldo}" class="text-danger"
                            th:if="${#fields.hasErrors('saldo')}">
@@ -87,13 +84,43 @@
                     </div>
 
                     <div class="form-group mb-3">
+                        <label class="form-label">Email</label>
+                        <input class="form-control"
+                               id="email"
+                               name="email"
+                               placeholder="Informe o email do titular"
+                               type="email"
+                               required
+                        />
+                    </div>
+                    <div class="form-group mb-3">
+                        <label class="form-label">Senha</label>
+                        <input class="form-control"
+                               id="senha"
+                               name="senha"
+                               placeholder="Informe a senha do titular"
+                               type="password"
+                               required
+                        />
+                    </div>
+
+                    <div class="form-group mb-3">
                         <button class="btn btn-primary" type="submit">Criar Conta</button>
-                        <span><a href="/" th:href="@{/admin/listar-contas}">Voltar para lista de contas</a></span>
+                        <span><a href="/" th:href="@{/admin/listar-contas}">Listar Contas</a></span>
                     </div>
                 </form>
             </div>
         </div>
     </div>
 </div>
+<script>
+    document.getElementById('saldo').addEventListener('input', function (event) {
+        const input = event.target;
+        if (input.value < 0) {
+            input.value = '';
+            alert('O saldo inicial não pode ser negativo.');
+        }
+    });
+</script>
 </body>
 </html>

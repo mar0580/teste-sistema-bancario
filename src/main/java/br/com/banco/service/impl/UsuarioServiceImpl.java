@@ -9,6 +9,7 @@ import br.com.banco.service.UsuarioService;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -33,8 +34,8 @@ public class UsuarioServiceImpl implements UsuarioService {
         Usuario usuario = new Usuario();
         usuario.setNome(usuarioDTO.getFirstName());
         usuario.setEmail(usuarioDTO.getEmail());
-
-        //encrypt the password once we integrate spring security
+        usuario.setDataCriacao(LocalDateTime.now());
+        //Para criptografar a senha depois de integrar ao Spring Security
         //user.setPassword(userDto.getPassword());
         usuario.setPassword(passwordEncoder.encode(usuarioDTO.getPassword()));
         Role role = roleRepository.findByTipoUsuario("ROLE_ADMIN");

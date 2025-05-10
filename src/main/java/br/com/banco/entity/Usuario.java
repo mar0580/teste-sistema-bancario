@@ -3,6 +3,8 @@ package br.com.banco.entity;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.io.Serializable;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,8 +13,7 @@ import java.util.List;
 @AllArgsConstructor
 @Entity
 @Table(name="usuario")
-public class Usuario
-{
+public class Usuario implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Id
@@ -27,6 +28,9 @@ public class Usuario
 
     @Column(nullable=false)
     private String password;
+
+    @Column(nullable = false)
+    private LocalDateTime dataCriacao;
 
     @ManyToMany(fetch = FetchType.EAGER, cascade=CascadeType.ALL)
     @JoinTable(

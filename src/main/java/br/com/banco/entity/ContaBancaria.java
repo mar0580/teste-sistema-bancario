@@ -26,9 +26,6 @@ public class ContaBancaria {
     private String titular;
 
     @Column(nullable = false)
-    private String tipoConta;
-
-    @Column(nullable = false)
     private BigDecimal saldo;
 
     @Column(nullable = false)

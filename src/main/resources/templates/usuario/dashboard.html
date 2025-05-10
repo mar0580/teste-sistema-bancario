@@ -16,9 +16,6 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" th:href="@{/register}">Registrar</a>
-                </li>
-                <li class="nav-item">
                     <a class="nav-link active" aria-current="page" th:href="@{/logout}">Sair</a>
                 </li>
             </ul>
@@ -27,7 +24,6 @@
 </nav>
 <div class="container">
     <h2 class="text-center">Operações Bancárias</h2>
-    <h2 class="text-center">Bem-vindo ao Dashboard</h2>
     <div class="card mb-4">
         <div class="card-body">
             <h5 class="card-title">Informações da Conta</h5>
@@ -37,10 +33,7 @@
         </div>
     </div>
     <form method="post" th:action="@{/usuario/creditar}" class="mb-4">
-        <div class="form-group">
-            <label for="numeroContaCredito">Número da Conta</label>
-            <input type="text" class="form-control" id="numeroContaCredito" name="numeroConta" placeholder="Informe o número da conta" required>
-        </div>
+        <input type="hidden" name="numeroConta" th:value="${numeroConta}" />
         <div class="form-group">
             <label for="valorCredito">Valor</label>
             <input type="number" class="form-control" id="valorCredito" name="valor" placeholder="Informe o valor" step="0.01" required>
@@ -48,12 +41,8 @@
         <button type="submit" class="btn btn-success">Creditar</button>
     </form>
 
-    <!-- Formulário de Débito -->
     <form method="post" th:action="@{/usuario/debitar}">
-        <div class="form-group">
-            <label for="numeroContaDebito">Número da Conta</label>
-            <input type="text" class="form-control" id="numeroContaDebito" name="numeroConta" placeholder="Informe o número da conta" required>
-        </div>
+        <input type="hidden" name="numeroConta" th:value="${numeroConta}" />
         <div class="form-group">
             <label for="valorDebito">Valor</label>
             <input type="number" class="form-control" id="valorDebito" name="valor" placeholder="Informe o valor" step="0.01" required>

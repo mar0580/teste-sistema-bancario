@@ -30,7 +30,7 @@
                 <h2 class="text-center">Registrar novos usuários</h2>
             </div>
             <div class="card-body">
-                <form method="post" role="form" th:action="@{/register/save}" th:object="${user}">
+                <form method="post" th:action="@{/admin/criar-usuario}" th:object="${user}">
 
                     <div class="form-group mb-3">
                         <label class="form-label">Nome</label>

@@ -29,6 +29,7 @@ public class SecurityConfig {
         http.csrf().disable()
                 .authorizeHttpRequests((authorize) ->
                         authorize.requestMatchers("/index").permitAll()
+                                .requestMatchers("/admin/criar-usuario").permitAll() // Permitir acesso público
                                 .requestMatchers("/admin/**").hasRole("ADMIN")
                                 .requestMatchers("/usuario/**").hasRole("USER")
                 ).formLogin(

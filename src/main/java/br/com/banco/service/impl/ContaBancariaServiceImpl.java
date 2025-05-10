@@ -91,6 +91,9 @@ public class ContaBancariaServiceImpl implements ContaBancariaService {
     @Transactional
     public void debitar(String numeroConta, BigDecimal valor) {
         ContaBancaria conta = buscarContaComLock(numeroConta);
+        if (conta.getSaldo().compareTo(valor) < 0) {
+            throw new IllegalArgumentException("Saldo insuficiente para realizar o débito.");
+        }
         conta.debitar(valor);
         contaBancariaRepository.save(conta);
     }
@@ -100,6 +103,10 @@ public class ContaBancariaServiceImpl implements ContaBancariaService {
     public void transferir(String contaOrigem, String contaDestino, BigDecimal valor) {
         ContaBancaria origem = buscarContaComLock(contaOrigem);
         ContaBancaria destino = buscarContaComLock(contaDestino);
+
+        if (origem.getSaldo().compareTo(valor) < 0) {
+            throw new IllegalArgumentException("Saldo insuficiente para realizar a transferência.");
+        }
 
         origem.debitar(valor);
         destino.creditar(valor);

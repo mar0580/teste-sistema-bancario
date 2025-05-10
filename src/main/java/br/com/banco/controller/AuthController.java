@@ -44,22 +44,6 @@ public class AuthController {
         return "register_";
     }
 
-//    @PostMapping("/register/save")
-//    public String registration(@Valid @ModelAttribute("user") UsuarioDTO usuarioDTO,
-//                               BindingResult result,
-//                               Model model){
-//        Usuario existing = usuarioService.findByEmail(usuarioDTO.getEmail());
-//        if (existing != null) {
-//            result.rejectValue("email", null, "Já existe uma conta registrada com esse e-mail");
-//        }
-//        if (result.hasErrors()) {
-//            model.addAttribute("user", usuarioDTO);
-//            return "register_";
-//        }
-//        usuarioService.saveUser(usuarioDTO);
-//        return "redirect:/register?success";
-//    }
-
     @PostMapping("/usuario/creditar")
     public String creditar(@RequestParam String numeroConta, @RequestParam BigDecimal valor, Authentication authentication) {
         String emailUsuarioLogado = authentication.getName();

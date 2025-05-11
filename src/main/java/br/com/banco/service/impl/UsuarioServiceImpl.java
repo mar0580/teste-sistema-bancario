@@ -54,11 +54,11 @@ public class UsuarioServiceImpl implements UsuarioService {
     @Override
     public List<UsuarioDTO> findAllUsers() {
         List<Usuario> usuarios = userRepository.findAll();
-        return usuarios.stream().map((usuario) -> convertEntityToDto(usuario))
+        return usuarios.stream().map((usuario) -> converterEntityToDto(usuario))
                 .collect(Collectors.toList());
     }
 
-    private UsuarioDTO convertEntityToDto(Usuario usuario){
+    private UsuarioDTO converterEntityToDto(Usuario usuario){
         UsuarioDTO userDto = new UsuarioDTO();
         String[] name = usuario.getNome().split(" ");
         userDto.setFirstName(name[0]);

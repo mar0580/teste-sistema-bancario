@@ -31,7 +31,7 @@ public class CustomUserDetailsService implements UserDetailsService {
                     usuario.getPassword(),
                     mapRolesToAuthorities(usuario.getRoles()));
         }else{
-            throw new UsernameNotFoundException("Usuário ou senha inválidos");
+            throw new IllegalArgumentException("Usuário ou senha inválidos");
         }
     }
 

@@ -1,6 +1,7 @@
 package br.com.banco.entity;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Positive;
 import lombok.*;
 
 import java.math.BigDecimal;
@@ -25,6 +26,7 @@ public class ContaBancaria {
     @Column(nullable = false)
     private String titular;
 
+    @Positive
     @Column(nullable = false)
     private BigDecimal saldo;
 

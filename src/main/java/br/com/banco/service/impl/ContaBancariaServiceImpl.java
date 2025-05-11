@@ -28,7 +28,8 @@ public class ContaBancariaServiceImpl implements ContaBancariaService {
     private final PasswordEncoder passwordEncoder;
     private final TransacaoRepository transacaoRepository;
 
-    public ContaBancariaServiceImpl(ContaBancariaRepository contaBancariaRepository, UsuarioRepository usuarioRepository, RoleRepository roleRepository, PasswordEncoder passwordEncoder, TransacaoRepository transacaoRepository) {
+    public ContaBancariaServiceImpl(ContaBancariaRepository contaBancariaRepository, UsuarioRepository usuarioRepository,
+                                    RoleRepository roleRepository, PasswordEncoder passwordEncoder, TransacaoRepository transacaoRepository) {
         this.contaBancariaRepository = contaBancariaRepository;
         this.usuarioRepository = usuarioRepository;
         this.roleRepository = roleRepository;
@@ -121,46 +122,6 @@ public class ContaBancariaServiceImpl implements ContaBancariaService {
                     .contaOrigem(conta)
                     .build();
             transacaoRepository.save(transacao);
-        } catch (OptimisticLockException e) {
-            throw new IllegalStateException("Conflito de versão detectado. Tente novamente.", e);
-        }
-    }
-
-    @Transactional
-    public void transferir(String contaOrigem, String contaDestino, BigDecimal valor) {
-        ContaBancaria origem = buscarContaPorNumero(contaOrigem);
-        ContaBancaria destino = buscarContaPorNumero(contaDestino);
-
-        try {
-            if (origem.getSaldo().compareTo(valor) < 0) {
-                throw new IllegalArgumentException("Saldo insuficiente para realizar a transferência.");
-            }
-
-            origem.debitar(valor);
-            destino.creditar(valor);
-
-            contaBancariaRepository.save(origem);
-            contaBancariaRepository.save(destino);
-
-            // Registra a transação de débito para a conta de origem
-            Transacao transacaoDebito = Transacao.builder()
-                    .tipoTransacao(TipoTransacao.TRANSFERENCIA)
-                    .valor(valor)
-                    .dataHora(LocalDateTime.now())
-                    .contaOrigem(origem)
-                    .contaDestino(destino)
-                    .build();
-            transacaoRepository.save(transacaoDebito);
-
-            // Registra a transação de crédito para a conta de destino
-            Transacao transacaoCredito = Transacao.builder()
-                    .tipoTransacao(TipoTransacao.TRANSFERENCIA)
-                    .valor(valor)
-                    .dataHora(LocalDateTime.now())
-                    .contaOrigem(origem)
-                    .contaDestino(destino)
-                    .build();
-            transacaoRepository.save(transacaoCredito);
         } catch (OptimisticLockException e) {
             throw new IllegalStateException("Conflito de versão detectado. Tente novamente.", e);
         }
